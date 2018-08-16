@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Pipes;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
 namespace GM.PPAP.ServiceSDK

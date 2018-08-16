@@ -8,11 +8,17 @@ namespace GM.PPAP.ServiceSDK
         private static string _appId;
         private static string _secret;
         private static IGmServiceRestClient _serviceRestClient;
+        public static string ConfigFileName { get; private set; }
 
         public static void Init(string appId, string secret)
         {
             SetAppId(appId);
             SetSecret(secret);
+        }
+
+        public static void SetConfigFile(string configFileName)
+        {
+            ConfigFileName = configFileName;
         }
 
         private static void SetAppId(string appId)

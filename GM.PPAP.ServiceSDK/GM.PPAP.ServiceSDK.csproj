@@ -3,13 +3,53 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3</Version>
-    <PackageReleaseNotes>## 1.0.3
+    <Version>1.0.4-alpha-4</Version>
+    <PackageReleaseNotes>## 1.0.4-alpha-3
+change serviceconfig.json path
+
+## 1.0.4-alpha-1
+add serviceconfig.json file
+
+## 1.0.3
 Add support NET452
 
 ## 1.0.2
 remove config setting.</PackageReleaseNotes>
   </PropertyGroup>
+
+  <!--<ItemGroup>
+    <Content Update="$(NuGetPackageRoot)**">
+      <Pack>true</Pack>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackagePath>content;contentFiles/any/any</PackagePath>
+      <NuGetRecursiveDir>$(DestinationSubDirectory)</NuGetRecursiveDir>
+    </Content>
+  </ItemGroup>-->
+  <ItemGroup>
+    <Content Include="serviceconfig.json" copyToOutput="true">
+      <!--<Pack>true</Pack>-->
+      <IncludeInPackage>true</IncludeInPackage>
+      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+      <!--<PackagePath>$(ContentTargetFolders)</PackagePath>
+      <NuGetRecursiveDir>$(DestinationSubDirectory)</NuGetRecursiveDir>-->
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="contentFiles/**/*.*" copyToOutput="true">
+      <IncludeInPackage>true</IncludeInPackage>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Content Include="Install.ps1">
+      <PackagePath>tools\</PackagePath>
+      <IncludeInPackage>true</IncludeInPackage>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <NuGetRecursiveDir>$(ContentTargetFolders)</NuGetRecursiveDir>
+    </Content>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
@@ -49,11 +89,4 @@ remove config setting.</PackageReleaseNotes>
     <PackageReference Include="NetFx.Extensions.Configuration.FileExtensions" Version="2.1.1" />
     <PackageReference Include="NetFx.Extensions.Configuration.Json" Version="2.1.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="serviceconfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

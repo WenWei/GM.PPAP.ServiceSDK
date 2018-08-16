@@ -74,7 +74,7 @@ namespace GM.PPAP.ServiceSDK.Http
         {
             Method = method;
 
-            var config = new ConfigHelper("serviceconfig.json");
+            var config = new ConfigHelper(GmService.ConfigFileName);
             var serviceUrl = config.GetValue<string>("ServiceUrl", () => "http://localhost:5000/");
 
             var b = new StringBuilder();
