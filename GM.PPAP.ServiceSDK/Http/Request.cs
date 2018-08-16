@@ -33,11 +33,6 @@ namespace GM.PPAP.ServiceSDK.Http
         public string Password { get; set; }
 
         /// <summary>
-        /// Service hostname
-        /// </summary>
-        public string ServiceUrl { get; set; }
-
-        /// <summary>
         /// Post params
         /// </summary>
         public List<KeyValuePair<string, string>> PostParams { get { return _postParams; } }
@@ -79,8 +74,11 @@ namespace GM.PPAP.ServiceSDK.Http
         {
             Method = method;
 
+            var config = new ConfigHelper("serviceconfig.json");
+            var serviceUrl = config.GetValue<string>("ServiceUrl", () => "http://localhost:5000/");
+
             var b = new StringBuilder();
-            b.Append(ServiceUrl).Append(domain);
+            b.Append(serviceUrl).Append(domain);
             b.Append(uri);
 
             _uri = new Uri(b.ToString());
@@ -108,11 +106,6 @@ namespace GM.PPAP.ServiceSDK.Http
         {
             Username = username;
             Password = password;
-        }
-
-        public void SetServiceUrl(string serviceUrl)
-        {
-            ServiceUrl = serviceUrl;
         }
 
         private static string EncodeParameters(IEnumerable<KeyValuePair<string, string>> data)

@@ -11,20 +11,17 @@ namespace GM.PPAP.ServiceSDK.Clients
     {
         public string AppId { get; }
         public string Secret { get; }
-        public string ServiceUrl { get; }
         public string AccountSid { get; }
         public HttpClient HttpClient { get; }
 
         public GmServiceRestClient(
             string appId,
             string secret,
-            string serviceUrl,
             string accountSid = null,
             HttpClient httpClient = null)
         {
             AppId = appId;
             Secret = secret;
-            ServiceUrl = serviceUrl;
             AccountSid = accountSid ?? appId;
             HttpClient = httpClient ?? DefaultClient();
         }
@@ -97,7 +94,6 @@ namespace GM.PPAP.ServiceSDK.Clients
         public Response Request(Request request)
         {
             request.SetAuth(AppId, Secret);
-            request.SetServiceUrl(ServiceUrl);
 
             Response response;
             try
@@ -123,7 +119,6 @@ namespace GM.PPAP.ServiceSDK.Clients
         public async Task<Response> RequestAsync(Request request)
         {
             request.SetAuth(AppId, Secret);
-            request.SetServiceUrl(ServiceUrl);
 
             Response response;
             try

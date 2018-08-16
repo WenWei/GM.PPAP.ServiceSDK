@@ -14,7 +14,7 @@ namespace GM.PPAP.ServiceSDK.Http
     /// </summary>
     public class SystemNetHttpClient : HttpClient
     {
-#if NET451
+#if NET452
         private string PlatVersion = " (.NET Framework 4.5.1+)";
 #else
         private string PlatVersion = $" ({RuntimeInformation.FrameworkDescription})";
@@ -82,8 +82,8 @@ namespace GM.PPAP.ServiceSDK.Http
                 request.ConstructUrl()
             );
 
-            //var authBytes = Authentication(request.Username, request.Password);
-            //httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Basic", authBytes);
+            var authBytes = Authentication(request.Username, request.Password);
+            httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Basic", authBytes);
 
             httpRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpRequest.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("utf-8"));

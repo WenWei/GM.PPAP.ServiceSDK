@@ -39,9 +39,7 @@ namespace GM.PPAP.ServiceSDK
             if (_appId == null || _secret == null)
                 throw new AuthenticationException("ServiceRestClient was used before AppId and Secret were set, please call GmServiceClient.init()");
 
-            var config = new ConfigHelper("serviceconfig.json");
-            var serviceUrl = config.GetValue<string>("ServiceUrl");
-            _serviceRestClient = new GmServiceRestClient(_appId, _secret, serviceUrl);
+            _serviceRestClient = new GmServiceRestClient(_appId, _secret);
             return _serviceRestClient;
         }
 
